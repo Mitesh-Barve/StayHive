@@ -51,4 +51,4 @@ StayHive is a full-stack web application designed to facilitate vacation rental 
 <br>
 <br>
 
-Live Link : [click here](https://vacationvista.onrender.com/listings)
+
