@@ -1,5 +1,5 @@
-# Vacation-Vista
-Vacation Vista is a full-stack web application designed to facilitate vacation rental management. It allows users to browse, list, and manage vacation properties with an intuitive interface and seamless CRUD (Create, Read, Update, Delete) operations. The platform provides a secure, scalable, and user-friendly experience, ensuring smooth interactions for both property owners and travelers.
+# StayHive
+StayHive is a full-stack web application designed to facilitate vacation rental management. It allows users to browse, list, and manage vacation properties with an intuitive interface and seamless CRUD (Create, Read, Update, Delete) operations. The platform provides a secure, scalable, and user-friendly experience, ensuring smooth interactions for both property owners and travelers.
 <br>
 <br>
 
