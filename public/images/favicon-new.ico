@@ -1,0 +1,17 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A6FA5;stop-opacity:1" /> 
+      <stop offset="100%" style="stop-color:#6B8CAF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- House with chimney and user icon -->
+  <path d="M24 8L8 20L8 40L40 40L40 20L24 8Z" fill="url(#logoGradient)" stroke="white" stroke-width="1"/>
+  <path d="M24 14L34 20V34H14V20L24 14Z" fill="white"/>
+  <rect x="26" y="26" width="5" height="8" fill="url(#logoGradient)"/>
+  <!-- Chimney -->
+  <rect x="16" y="12" width="3" height="8" fill="url(#logoGradient)"/>
+  <!-- User representation -->
+  <circle cx="33" cy="30" r="2.5" fill="url(#logoGradient)"/>
+  <path d="M31 33L32 36L34 36L35 33" fill="none" stroke="url(#logoGradient)" stroke-width="1.5"/>
+</svg>

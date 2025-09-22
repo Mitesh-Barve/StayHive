@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayHive - Find Your Perfect Stay</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Flaticon for house icon -->
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-straight/css/uicons-solid-straight.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* Custom house icon using CSS */
+        .custom-house-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-right: 5px;
+        }
+        
+        /* Style for navbar brand icon */
+        .navbar-brand i.fi {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        /* Hero section with video background */
+        .hero-section {
+            position: relative;
+            height: 75vh; /* Reduced by 25% from 100vh */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-medium);
+            backdrop-filter: blur(5px);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content .lead {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content .btn {
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Ensure main content doesn't overlap with hero section */
+        main.container {
+            padding-top: 0;
+        }
+        
+        /* Add spacing for pages without hero section */
+        main.container:not(:has(.hero-section)) {
+            padding-top: 2rem;
+        }
+        
+        /* Adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content .lead {
+                font-size: 1.2rem;
+            }
+            
+            .hero-content {
+                margin: 0 1rem;
+            }
+            
+            .hero-section {
+                height: 60vh; /* Reduced by 25% from 80vh (which would be 100vh reduced for mobile) */
+            }
+        }
+        
+        /* Night mode styles */
+        :root {
+            --night-bg: #282828; /* 20% lighter than #121212 */
+            --night-card-bg: #3a3a3a; /* 20% lighter than #1e1e1e */
+            --night-text: #eaeaea; /* 20% lighter than #e0e0e0 */
+            --night-accent: #c9c9c9; /* 20% lighter than #bbbbbb */
+            --night-border: #555555; /* 20% lighter than #333333 */
+            --night-navbar-bg: rgba(58, 58, 58, 0.95); /* 20% lighter than rgba(30, 30, 30, 0.95) */
+            --night-input-bg: #454545; /* 20% lighter than #2d2d2d */
+            --night-foreground: #ffffff; /* High-contrast color for critical text like prices */
+        }
+        
+        .night-mode {
+            background-color: var(--night-bg) !important;
+            color: var(--night-text);
+        }
+        
+        .night-mode .navbar {
+            background: var(--night-navbar-bg) !important;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .night-mode .navbar-brand,
+        .night-mode .nav-link {
+            color: var(--night-text) !important;
+        }
+        
+        .night-mode .search-container {
+            background-color: var(--night-input-bg);
+        }
+        
+        .night-mode .form-control.search-input {
+            color: var(--night-text);
+            background-color: transparent;
+        }
+        
+        .night-mode .form-control.search-input::placeholder {
+            color: var(--night-accent);
+        }
+        
+        .night-mode .listing-card {
+            background-color: var(--night-card-bg);
+            border-color: var(--night-border);
+        }
+        
+        .night-mode .card-text-title {
+            color: var(--night-text);
+        }
+        
+        .night-mode .card-text {
+            color: var(--night-accent);
+        }
+        
+        /* Ensure price text is visible in dark mode */
+        .night-mode .card-text i.fa-rupee-sign,
+        .night-mode .price-info h3,
+        .night-mode .price-info h3 i.fa-rupee-sign,
+        .night-mode .card-body h4 i.fa-rupee-sign,
+        .night-mode h4,
+        .night-mode .font-title,
+        .night-mode .card-title,
+        .night-mode .listings-header {
+            color: var(--night-foreground) !important;
+        }
+        
+        /* Ensure filter items are visible in dark mode */
+        .night-mode .filter-item {
+            background-color: var(--night-card-bg);
+            border-color: var(--night-border);
+            color: var(--night-text);
+        }
+        
+        .night-mode .filter-item:hover,
+        .night-mode .filter-item.active {
+            border-color: var(--primary-color);
+            background-color: rgba(254, 66, 77, 0.1);
+        }
+        
+        .night-mode .filter-item i,
+        .night-mode .filter-item p {
+            color: var(--night-text);
+        }
+        
+        .night-mode .filter-item:hover i,
+        .night-mode .filter-item.active i,
+        .night-mode .filter-item:hover p,
+        .night-mode .filter-item.active p {
+            color: var(--night-foreground) !important;
+        }
+        
+        .night-mode .tax-toggle-label {
+            color: var(--night-text);
+        }
+        
+        .night-mode .btn-search {
+            background: linear-gradient(135deg, #ff4d4d, #fe424d);
+        }
+        
+        .night-mode .filters-container {
+            background: linear-gradient(145deg, #3a3a3a, #363636); /* 20% lighter than #1e1e1e, #1a1a1a */
+            border-color: var(--night-border);
+        }
+        
+        .night-mode .filter-item {
+            background-color: var(--night-card-bg);
+            border-color: var(--night-border);
+            color: var(--night-text);
+        }
+        
+        .night-mode .filter-item:hover {
+            background-color: #4a4a4a; /* 20% lighter than #2a2a2a */
+        }
+        
+        .night-mode .f-container {
+            background-color: var(--night-bg);
+        }
+        
+        .night-mode .f-column h3 {
+            color: var(--night-text);
+        }
+        
+        .night-mode .f-column ul li a {
+            color: var(--night-accent);
+        }
+        
+        .night-mode .f-copyright {
+            border-top-color: var(--night-border);
+        }
+        
+        .night-mode .hero-content {
+            background: rgba(40, 40, 40, 0.6); /* 20% lighter than rgba(0, 0, 0, 0.6) */
+        }
+        
+        .night-mode .alert {
+            background-color: var(--night-card-bg);
+            color: var(--night-text);
+        }
+        
+        .night-mode .booking-card-static {
+            background-color: var(--night-card-bg);
+        }
+        
+        .night-mode .review-card {
+            background-color: var(--night-card-bg);
+            border-color: var(--night-border);
+        }
+        
+        .night-mode .form-control {
+            background-color: var(--night-input-bg);
+            border-color: var(--night-border);
+            color: var(--night-text);
+        }
+        
+        .night-mode .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(254, 66, 77, 0.25);
+        }
+        
+        .night-mode .form-label {
+            color: var(--night-text);
+        }
+        
+        .night-mode .dropdown-menu {
+            background-color: var(--night-card-bg);
+            border-color: var(--night-border);
+        }
+        
+        .night-mode .dropdown-item {
+            color: var(--night-text);
+        }
+        
+        .night-mode .dropdown-item:hover {
+            background-color: rgba(254, 66, 77, 0.1);
+        }
+        
+        .night-mode .dropdown-header {
+            color: var(--night-text);
+        }
+        
+        .night-mode .dropdown-divider {
+            border-top-color: var(--night-border);
+        }
+        
+        .night-mode .text-muted {
+            color: var(--night-accent) !important;
+        }
+        
+        .night-mode small.text-muted {
+            color: var(--night-accent) !important;
+        }
+        
+        .night-mode .custom-house-icon {
+            filter: invert(1);
+        }
+        
+        /* Ensure all heading elements are visible in dark mode */
+        .night-mode h1, .night-mode h2, .night-mode h3, .night-mode h4, .night-mode h5, .night-mode h6 {
+            color: var(--night-foreground) !important;
+        }
+        
+        /* Ensure footer elements are visible in dark mode */
+        .night-mode .f-container {
+            background-color: var(--night-bg);
+        }
+        
+        .night-mode .f-column h3 {
+            color: var(--night-foreground) !important;
+        }
+        
+        .night-mode .f-column ul li a {
+            color: var(--night-accent);
+        }
+        
+        .night-mode .f-column ul li a:hover {
+            color: var(--night-foreground);
+        }
+        
+        .night-mode .f-socials i {
+            color: var(--night-accent);
+        }
+        
+        .night-mode .f-socials i:hover {
+            color: var(--night-foreground);
+        }
+        
+        .night-mode .f-tools a {
+            color: var(--night-accent);
+        }
+        
+        .night-mode .f-tools a:hover {
+            color: var(--night-foreground);
+        }
+        
+        .night-mode .f-copyright {
+            color: var(--night-accent);
+            border-top-color: var(--night-border);
+        }
+        
+        /* Ensure navbar elements are visible in dark mode */
+        .night-mode .navbar-brand {
+            color: var(--night-foreground) !important;
+        }
+        
+        .night-mode .brand-text {
+            color: var(--night-foreground);
+        }
+        
+        .night-mode .search-icon {
+            color: var(--night-accent);
+        }
+        
+        .night-mode .form-control.search-input::placeholder {
+            color: var(--night-accent);
+        }
+        
+        /* Ensure tax toggle container is visible in dark mode */
+        .night-mode .tax-toggle-container {
+            background: var(--night-card-bg);
+            border-color: var(--night-border);
+        }
+        
+        .night-mode .tax-toggle-label {
+            color: var(--night-text);
+        }
+        
+        .night-mode .form-check-input:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        /* Ensure dropdown elements are visible in dark mode */
+        .night-mode .dropdown-header {
+            color: var(--night-foreground);
+        }
+        
+        .night-mode .profile-icon {
+            color: var(--night-foreground);
+        }
+        
+        /* Ensure hero section text is visible in dark mode */
+        .night-mode .hero-title {
+            color: var(--night-foreground);
+        }
+        
+        .night-mode .hero-subtitle {
+            color: var(--night-foreground);
+        }
+        
+        .night-mode .hero-search-box {
+            background: var(--night-card-bg);
+            color: var(--night-text);
+        }
+        
+        .night-mode .search-item label {
+            color: var(--night-text);
+        }
+        
+        .night-mode .btn-search-primary {
+            color: white;
+        }
+        
+        /* Ensure form controls in hero section are visible in dark mode */
+        .night-mode .form-control {
+            background-color: var(--night-input-bg);
+            border-color: var(--night-border);
+            color: var(--night-text);
+        }
+        
+        .night-mode .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(254, 66, 77, 0.2);
+        }
+        
+        .night-mode .form-control::placeholder {
+            color: var(--night-accent);
+        }
+        
+        /* Ensure signup and login form containers are visible in dark mode */
+        .night-mode .signup-form-container,
+        .night-mode .login-form-container {
+            background: var(--night-card-bg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .night-mode .divider::before,
+        .night-mode .divider::after {
+            border-bottom-color: var(--night-border);
+        }
+        
+        .night-mode .divider-text {
+            color: var(--night-accent);
+        }
+        
+        .night-mode .btn-google {
+            background-color: var(--night-card-bg);
+            border-color: var(--night-border);
+            color: var(--night-text);
+        }
+        
+        .night-mode .btn-google:hover {
+            background-color: var(--night-input-bg);
+            border-color: var(--night-border);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .night-mode .btn-google i {
+            color: #DB4437;
+        }
+    </style>
+</head>
+<body>
+    <%- include("../includes/navbar.ejs") %>
+    <main class="container">
+        <%- include("../includes/flash.ejs") %>
+        <%- body %>
+    </main>
+    <%- include("../includes/footer.ejs") %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script>
+        // Night mode toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+            const body = document.body;
+            
+            // Check for saved theme preference or respect OS preference
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            // Apply saved theme or default to light mode
+            if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+                body.classList.add('night-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                themeToggle.querySelector('span').textContent = 'Light Mode';
+            }
+            
+            // Toggle theme when button is clicked
+            themeToggle.addEventListener('click', function() {
+                body.classList.toggle('night-mode');
+                
+                if (body.classList.contains('night-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    themeToggle.querySelector('span').textContent = 'Light Mode';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    themeToggle.querySelector('span').textContent = 'Dark Mode';
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

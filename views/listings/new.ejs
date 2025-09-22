@@ -1,0 +1,121 @@
+<% layout("/layouts/boilerplate") %>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="form-container">
+                <h3 class="text-center mb-4">Create New Listing</h3>
+                <form method="post" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="listing[title]" required>
+                        <div class="invalid-feedback">
+                            Please provide a title.
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="listing[description]" rows="3" required></textarea>
+                        <div class="invalid-feedback">
+                            Please provide a description.
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image</label>
+                        <input type="file" class="form-control" id="image" name="listing[image]" required>
+                        <div class="invalid-feedback">
+                            Please upload an image.
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="number" class="form-control" id="price" name="listing[price]" required>
+                            <div class="invalid-feedback">
+                                Please provide a price.
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="category" class="form-label">Category</label>
+                            <select class="form-control" id="category" name="listing[category]" required>
+                                <option value="">Select a category</option>
+                                <option value="Trending Rooms">Trending Rooms</option>
+                                <option value="Iconic Cities">Iconic Cities</option>
+                                <option value="Mountains">Mountains</option>
+                                <option value="Farms">Farms</option>
+                                <option value="Arctic">Arctic</option>
+                                <option value="Domes">Domes</option>
+                                <option value="Boats">Boats</option>
+                                <option value="Beach">Beach</option>
+                                <option value="Countryside">Countryside</option>
+                                <option value="Luxury">Luxury</option>
+                                <option value="Amazing Pools">Amazing Pools</option>
+                                <option value="Lakefront">Lakefront</option>
+                                <option value="Design">Design</option>
+                                <option value="Amazing Views">Amazing Views</option>
+                                <option value="Tiny Homes">Tiny Homes</option>
+                                <option value="National Parks">National Parks</option>
+                                <option value="Cabins">Cabins</option>
+                                <option value="Tropical">Tropical</option>
+                                <option value="Camping">Camping</option>
+                                <option value="Castles">Castles</option>
+                                <option value="Skiing">Skiing</option>
+                                <option value="Treehouses">Treehouses</option>
+                                <option value="Containers">Containers</option>
+                                <option value="Yurts">Yurts</option>
+                                <option value="Earth Homes">Earth Homes</option>
+                                <option value="A-frames">A-frames</option>
+                                <option value="Caves">Caves</option>
+                                <option value="Barns">Barns</option>
+                                <option value="Historical Homes">Historical Homes</option>
+                                <option value="Vineyards">Vineyards</option>
+                                <option value="Desert">Desert</option>
+                                <option value="Islands">Islands</option>
+                                <option value="Grand Mansions">Grand Mansions</option>
+                                <option value="Houseboats">Houseboats</option>
+                                <option value="Riads">Riads</option>
+                                <option value="Shepherd's Huts">Shepherd's Huts</option>
+                                <option value="Dammusi">Dammusi</option>
+                                <option value="Windmills">Windmills</option>
+                                <option value="Minsus">Minsus</option>
+                                <option value="Trulli">Trulli</option>
+                                <option value="Offgrid">Offgrid</option>
+                                <option value="Beachfront">Beachfront</option>
+                                <option value="Towers">Towers</option>
+                                <option value="Creative Spaces">Creative Spaces</option>
+                                <option value="Luxe">Luxe</option>
+                                <option value="OMG!">OMG!</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a category.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" class="form-control" id="country" name="listing[country]" required>
+                            <div class="invalid-feedback">
+                                Please provide a country.
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="location" name="listing[location]" required>
+                            <div class="invalid-feedback">
+                                Please provide a location.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary w-100 mt-4">Create Listing</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

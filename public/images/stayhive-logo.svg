@@ -1,0 +1,12 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A6FA5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6B8CAF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Larger house icon -->
+  <path d="M25 6L6 22L6 44L44 44L44 22L25 6Z" fill="url(#logoGradient)" stroke="white" stroke-width="2"/>
+  <path d="M25 12L38 22V38H12V22L25 12Z" fill="white"/>
+  <rect x="29" y="29" width="7" height="9" fill="url(#logoGradient)"/>
+</svg>
