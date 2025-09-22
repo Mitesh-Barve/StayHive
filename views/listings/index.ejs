@@ -239,6 +239,14 @@
     background-color: rgba(254, 66, 77, 0.1);
   }
 
+  /* Touch active state for mobile devices */
+  .filter-item.touch-active {
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: rgba(254, 66, 77, 0.1);
+  }
+
   /* As per user preference for removing opacity from filter icons */
   .filter-item i {
     font-size: 1.1rem; /* Larger icon size */
@@ -367,10 +375,150 @@
     color: var(--accent-color);
   }
 
+  /* Mobile First Approach - Base styles for mobile devices */
+  .filters-container {
+    width: 100%;
+    padding: 0.25rem;
+    gap: 8px;
+    border-radius: 8px;
+  }
+
+  .filter-item {
+    padding: 0.5rem;
+    min-width: 60px;
+    max-width: 80px;
+  }
+
+  .filter-item i {
+    font-size: 0.9rem;
+  }
+
+  .filter-item p {
+    font-size: 0.75rem;
+  }
+
+  .tax-toggle-container {
+    padding: 0.5rem;
+  }
+
+  .tax-toggle-label {
+    font-size: 0.75rem;
+  }
+
+  .listings-header {
+    font-size: 1.5rem;
+    margin: 0.75rem 0;
+  }
+
+  .card-img-top {
+    height: 12rem;
+  }
+
+  .card-body {
+    padding: 1rem !important;
+  }
+
+  .card-text-title {
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+  }
+
+  .tax-info {
+    font-size: 0.75rem;
+  }
+
+  /* Small phones (under 480px) */
+  @media (max-width: 480px) {
+    .filters-container {
+      gap: 6px;
+      padding: 0.25rem 0.1rem;
+    }
+    
+    .filter-item {
+      padding: 0.4rem;
+      min-width: 50px;
+      max-width: 70px;
+    }
+    
+    .filter-item i {
+      font-size: 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+    
+    .filter-item p {
+      font-size: 0.7rem;
+    }
+    
+    .tax-toggle-container {
+      padding: 0.4rem;
+    }
+    
+    .tax-toggle-label {
+      font-size: 0.7rem;
+    }
+    
+    .listings-header {
+      font-size: 1.3rem;
+      margin: 0.5rem 0;
+    }
+    
+    .card-img-top {
+      height: 10rem;
+    }
+    
+    .card-body {
+      padding: 0.75rem !important;
+    }
+    
+    .card-text-title {
+      font-size: 0.95rem;
+    }
+    
+    .card-text {
+      font-size: 0.85rem;
+    }
+  }
+
+  /* iPhone SE and similar small devices */
+  @media (max-width: 375px) {
+    .filter-item {
+      padding: 0.3rem;
+      min-width: 45px;
+      max-width: 65px;
+    }
+    
+    .filter-item p {
+      font-size: 0.65rem;
+    }
+    
+    .card-img-top {
+      height: 9rem;
+    }
+    
+    .card-text-title {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Landscape orientation for phones */
+  @media (max-width: 767px) and (orientation: landscape) {
+    .card-img-top {
+      height: 10rem;
+    }
+    
+    .listing-card {
+      margin-bottom: 1rem !important;
+    }
+  }
+
   @media (max-width: 768px) {
     .filters-container {
       padding: 0.75rem 0.25rem;
       justify-content: flex-start; /* On mobile, align items to start */
+      width: 95%;
     }
     
     .filter-item {
@@ -389,6 +537,74 @@
     
     .tax-toggle-label {
       font-size: 0.7rem; /* Further reduced font size for mobile */
+    }
+  }
+
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    .filters-container {
+      width: 90%;
+      padding: 0.5rem 0.25rem;
+      gap: 12px;
+      border-radius: 12px;
+    }
+    
+    .filter-item {
+      padding: 0.6rem 0.8rem;
+      min-width: 75px;
+      max-width: 100px;
+    }
+    
+    .filter-item i {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+    
+    .filter-item p {
+      font-size: 0.8rem;
+    }
+    
+    .tax-toggle-container {
+      padding: 0.6rem 0.8rem;
+    }
+    
+    .tax-toggle-label {
+      font-size: 0.8rem;
+    }
+    
+    .listings-header {
+      font-size: 1.8rem;
+      margin: 1rem 0;
+    }
+    
+    .card-img-top {
+      height: 16rem;
+    }
+    
+    .card-body {
+      padding: 1.5rem !important;
+    }
+    
+    .card-text-title {
+      font-size: 1.1rem;
+    }
+    
+    .card-text {
+      font-size: 0.95rem;
+    }
+  }
+
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    .filters-container {
+      width: 85%;
+    }
+  }
+
+  /* Extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    .filters-container {
+      width: 80%;
     }
   }
 </style>
@@ -510,6 +726,52 @@
       event.preventDefault();
       filtersContainer.scrollLeft += event.deltaY;
     });
+    
+    // Add touch support for mobile devices
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    
+    filtersContainer.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - filtersContainer.offsetLeft;
+      scrollLeft = filtersContainer.scrollLeft;
+    });
+    
+    filtersContainer.addEventListener('mouseleave', () => {
+      isDown = false;
+    });
+    
+    filtersContainer.addEventListener('mouseup', () => {
+      isDown = false;
+    });
+    
+    filtersContainer.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - filtersContainer.offsetLeft;
+      const walk = (x - startX) * 2;
+      filtersContainer.scrollLeft = scrollLeft - walk;
+    });
+    
+    // Add touch events for mobile devices
+    filtersContainer.addEventListener('touchstart', (e) => {
+      isDown = true;
+      startX = e.touches[0].pageX - filtersContainer.offsetLeft;
+      scrollLeft = filtersContainer.scrollLeft;
+    });
+    
+    filtersContainer.addEventListener('touchend', () => {
+      isDown = false;
+    });
+    
+    filtersContainer.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.touches[0].pageX - filtersContainer.offsetLeft;
+      const walk = (x - startX) * 2;
+      filtersContainer.scrollLeft = scrollLeft - walk;
+    });
   }
   
   // Add active state to filter items and implement filtering functionality
@@ -526,6 +788,15 @@
       
       // Filter listings based on category
       filterListingsByCategory(category);
+    });
+    
+    // Add touch support for mobile devices
+    item.addEventListener('touchstart', function() {
+      this.classList.add('touch-active');
+    });
+    
+    item.addEventListener('touchend', function() {
+      this.classList.remove('touch-active');
     });
   });
   
@@ -556,4 +827,24 @@
     checkoutInput.min = tomorrow.toISOString().split('T')[0];
     checkoutInput.value = tomorrow.toISOString().split('T')[0];
   }
+  
+  // Add double tap to top functionality for mobile devices
+  let lastTap = 0;
+  const tapThreshold = 300; // ms
+  
+  document.addEventListener('touchend', function(event) {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+    
+    if (tapLength < tapThreshold && tapLength > 0) {
+      // Double tap detected, scroll to top
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      event.preventDefault();
+    }
+    
+    lastTap = currentTime;
+  });
 </script>

@@ -254,12 +254,14 @@
         color: var(--primary-color);
     }
 
-    @media (max-width: 992px) {
+    /* Mobile-specific improvements */
+    @media (max-width: 991px) {
         .search-container-wrapper {
             position: static;
             transform: none;
             width: 100%;
             margin: 1rem 0;
+            order: 3;
         }
         
         .search-container {
@@ -268,6 +270,75 @@
         
         .navbar-nav {
             text-align: center;
+        }
+        
+        .navbar-nav.ms-auto {
+            margin-top: 0.5rem;
+        }
+        
+        .nav-link {
+            padding: 0.75rem 1rem !important;
+            font-size: 1rem !important;
+            display: block;
+            margin: 0.25rem 0;
+        }
+        
+        .navbar-collapse {
+            margin-top: 1rem;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .navbar-brand {
+            font-size: 1.3rem;
+        }
+        
+        .nav-link {
+            padding: 0.6rem 0.8rem !important;
+            font-size: 0.95rem !important;
+        }
+        
+        .search-container {
+            padding: 0.4rem 0.8rem;
+        }
+        
+        .form-control.search-input {
+            height: 36px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-search {
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .navbar-brand {
+            font-size: 1.2rem;
+        }
+        
+        .nav-link {
+            padding: 0.5rem 0.7rem !important;
+            font-size: 0.9rem !important;
+        }
+        
+        .search-container {
+            padding: 0.3rem 0.6rem;
+        }
+        
+        .form-control.search-input {
+            height: 32px;
+            font-size: 0.85rem;
+        }
+        
+        .btn-search {
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
         }
     }
 </style>

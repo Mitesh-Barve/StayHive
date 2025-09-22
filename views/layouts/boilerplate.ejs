@@ -105,6 +105,96 @@
             padding-top: 2rem;
         }
         
+        /* Mobile First Approach - Base styles for mobile devices */
+        .hero-section {
+            height: 50vh;
+        }
+        
+        .hero-content {
+            padding: 1rem;
+            margin: 0 0.5rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .hero-content .lead {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-content .btn {
+            padding: 0.6rem 1.5rem;
+            font-size: 1rem;
+        }
+        
+        main.container {
+            padding: 0 0.5rem;
+        }
+        
+        main.container:not(:has(.hero-section)) {
+            padding-top: 1rem;
+        }
+        
+        /* Small phones (under 480px) */
+        @media (max-width: 480px) {
+            .hero-section {
+                height: 45vh;
+            }
+            
+            .hero-content {
+                padding: 0.75rem;
+                margin: 0 0.25rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .hero-content .lead {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-content .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            main.container {
+                padding: 0 0.25rem;
+            }
+        }
+        
+        /* iPhone SE and similar small devices */
+        @media (max-width: 375px) {
+            .hero-section {
+                height: 40vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.3rem;
+            }
+            
+            .hero-content .lead {
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Landscape orientation for phones */
+        @media (max-width: 767px) and (orientation: landscape) {
+            .hero-section {
+                height: 40vh;
+            }
+            
+            .hero-content {
+                padding: 0.5rem;
+            }
+        }
+        
         /* Adjustments for smaller screens */
         @media (max-width: 768px) {
             .hero-content h1 {
@@ -121,6 +211,55 @@
             
             .hero-section {
                 height: 60vh; /* Reduced by 25% from 80vh (which would be 100vh reduced for mobile) */
+            }
+        }
+        
+        /* Medium devices (tablets, 768px and up) */
+        @media (min-width: 768px) {
+            .hero-section {
+                height: 75vh;
+            }
+            
+            .hero-content {
+                padding: 2rem;
+                margin: 0 auto;
+            }
+            
+            .hero-content h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-content .lead {
+                font-size: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-content .btn {
+                padding: 0.75rem 2rem;
+                font-size: 1.1rem;
+            }
+            
+            main.container {
+                padding: 0 1rem;
+            }
+            
+            main.container:not(:has(.hero-section)) {
+                padding-top: 2rem;
+            }
+        }
+        
+        /* Large devices (desktops, 992px and up) */
+        @media (min-width: 992px) {
+            .hero-content {
+                max-width: 800px;
+            }
+        }
+        
+        /* Extra large devices (large desktops, 1200px and up) */
+        @media (min-width: 1200px) {
+            .hero-content {
+                max-width: 900px;
             }
         }
         
@@ -471,6 +610,32 @@
         
         .night-mode .btn-google i {
             color: #DB4437;
+        }
+        
+        /* Mobile navigation improvements */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 0 0 10px 10px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                padding: 1rem;
+                margin-top: 0.5rem;
+            }
+            
+            .night-mode .navbar-collapse {
+                background: var(--night-navbar-bg);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            }
+            
+            .navbar-nav.ms-auto {
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            
+            .night-mode .navbar-nav.ms-auto {
+                border-top: 1px solid var(--night-border);
+            }
         }
     </style>
 </head>
