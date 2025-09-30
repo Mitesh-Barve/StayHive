@@ -48,12 +48,23 @@ Beyond core booking functionalities, StayHive emphasizes usability and trust wit
 
 ---
 
-## Technologies  
-- **Frontend**: React.js, Tailwind CSS (or your chosen UI framework)  
-- **Backend**: Node.js + Express  
-- **Database**: MongoDB  
-- **Authentication**: JWT, bcrypt  
-- **Deployment**: Render  
+## 🔧 Tech Stack
+
+### Backend
+- **Node.js** with **Express.js** for server-side logic.
+- **Cloudinary** for image and video hosting and management.
+
+### Frontend
+- **EJS (Embedded JavaScript Templates)** for server-side rendering of dynamic HTML pages.
+
+### Database
+- **MongoDB** with **Mongoose** for data modeling and database operations.
+
+### Authentication
+- **Passport.js** for user authentication and security.
+
+### Deployment
+- **Render** for hosting the application in the cloud. 
 
 ---
 
